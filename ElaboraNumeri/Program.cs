@@ -5,14 +5,9 @@ public class Program
 {
     public static double ElaboraNumeri(List<double> numeri)
     {
-        double sum = 0.0;
+        double sum = numeri.AsParallel().Select(
 
-        for (int i = 0; i < numeri.Count; i++)
-        {
-            double numeroElaborato = ElaboraNumero(numeri[i], i);
-            sum += numeroElaborato;
-        }
-
+                 (numero, indice) => ElaboraNumero(numero, indice)).Sum();
         return sum;
     }
 
